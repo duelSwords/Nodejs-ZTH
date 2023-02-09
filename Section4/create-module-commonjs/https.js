@@ -7,3 +7,7 @@ function request(url, data) {
 }
 
 request('https://google.com', 'hello there')
+
+
+// Required are cached 
+// console.log(require.cache)
