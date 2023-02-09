@@ -25,11 +25,10 @@ EMCA (aka: ES6 modules)
 ![ES6](./es6.png)
 
 By default for backward compatiability .js file is set to CommonJS  
-To use EM6 set "type": "module" in the package.json or use the .mjs extension.  
+To use EM6 set `"type": "module"` in the package.json or use the `.mjs` extension.  
 Using EM6 import need file extensions unless it is covered by a complier
 
 Modules are cached.
-
 - Its global.
 - Lives under `console.log(require.cache)`
 
