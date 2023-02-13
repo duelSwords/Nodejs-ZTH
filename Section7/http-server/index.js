@@ -24,6 +24,7 @@ const server = http.createServer((req, res) => {
 });
 */
 
+/*
 const server = http.createServer();
 // Above is shorthand, for the requestListener
 server.on('request', (req, res) => {
@@ -51,6 +52,50 @@ server.on('request', (req, res) => {
   } else {
     res.statusCode = 404
     res.end()
+  }
+});
+*/
+
+const server = http.createServer();
+//Large data
+const friends = [
+  {
+    id: 0,
+    name: 'Mr.Bob',
+  },
+  {
+    id: 1,
+    name: 'Mr.Smith',
+  },
+  {
+    id: 2,
+    name: 'Mrs.Jane',
+  },
+];
+server.on('request', (req, res) => {
+  const items = req.url.split('/');
+  // /friends/2 => ['', 'friends', '2']
+
+  if (items[1] === 'friends') {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    //When a parametered endpoint
+    if (items.length === 3) {
+      // +items[2] using the + convert string in number
+      const friendIndex = Number(items[2]); //Need to be convert to a number
+      res.end(JSON.stringify(friends[friendIndex]));
+    } else {
+      res.end(JSON.stringify(friends));
+    }
+  } else if (items[1] === 'messages') {
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<ul>');
+    res.write('<li>Hello From the HTML write response</li>');
+    res.write('</ul>');
+    res.end();
+  } else {
+    res.statusCode = 404;
+    res.end();
   }
 });
 

@@ -31,3 +31,29 @@ DELETE - delete a single or collection `DELETE /friends` or `DELETE /friends/5`
 - Status Code  --> 200 
   - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
+
+## requestListener callback
+Has two parameter a request, response.  
+The request is what is passed in.  
+The response what what is getting back.  
+The response always needs to called end() when finished.  
+
+## API
+An endpoint --> /friends
+an paramatered endpoint / route  --> friends/12
+
+## Same Origin Policy
+What is the origin?  
+https://www.google.com:433/maps/  
+1. Protocol  
+    https://   
+2. Host  
+    www.google.com  
+3. Port  
+   :443  
+
+google origin   --->   facebook origin  
+can write to fb, fb server decise what to do with that data  
+cannot get data from fb  
+
+
