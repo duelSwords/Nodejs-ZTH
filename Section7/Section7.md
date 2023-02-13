@@ -11,9 +11,11 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
 What is API (Application Programming Interface) is a software intermediary that allows two application to talk to each other. 
 
 GET - Retrieve a single or collection `GET /friends` or `GET /friends/5`
-POST - is for the collection `POST /messages`
-PUT - is update a single item in the collection `PUT /messages/15`
+POST - is for the collection `POST /messages` or `POST /messages/15`
 DELETE - delete a single or collection `DELETE /friends` or `DELETE /friends/5`
+
+POST - Minor update change
+PUT - Replaces all representations of target with request payload
 
 ## 4 main parts HTTP REQUEST
 - Method --> POST
@@ -33,10 +35,14 @@ DELETE - delete a single or collection `DELETE /friends` or `DELETE /friends/5`
 
 
 ## requestListener callback
-Has two parameter a request, response.  
+Has two parameter a request (readable stream), response (writable stream).  
 The request is what is passed in.  
 The response what what is getting back.  
 The response always needs to called end() when finished.  
+```
+readable.pipe(writable)
+```
+
 
 ## API
 An endpoint --> /friends
@@ -55,5 +61,26 @@ https://www.google.com:433/maps/
 google origin   --->   facebook origin  
 can write to fb, fb server decise what to do with that data  
 cannot get data from fb  
+
+## CORS
+Cross Origin Resource Sharing  
+- A relax version of same origin policy
+
+response headers
+- **access controll allow origin**: *
+- `*` is wild card from all
+- should whitelist which origin it should be allowed
+- security should always use whitelist, default is denied until add to whitelist
+
+fetch() is a build in method, default is a GET request, to get a POST request pass in 2nd paramter, 
+```
+fetch('http://localhost:3000/friends', {
+    method: 'POST',
+    body: JSON.stringify({id: 3, name: 'Ryan'})
+})
+.then((res) => res.json())
+.then((friend) => console.log(friend)) 
+```
+
 
 
