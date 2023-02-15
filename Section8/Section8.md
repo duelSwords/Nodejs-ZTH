@@ -44,3 +44,16 @@ GET - tends to use response mostly
 POST - tends to use request mostly
 
 When sending a response to the client. Cannot send multiple res.json. Only send one, add the RETURN key to the logic. 
+
+## MVC - Model-View-Controller design pattern
+
+
+**MODEL** -> updates -> **VIEW** -> sees -> (USER) -> uses -> **CONTROLLER** -> manipulates -> MODEL 
+![MVC](./mvc.png)
+
+Controller - controls how the request and response should be handle. Should use the `named function` instead of `arrow function`. 
+
+Model - house the data
+
+
+
