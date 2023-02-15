@@ -22,6 +22,8 @@ Add extension by using `middleware`. Allow to process how `res` come and in and 
 Saving a `devDependencies`. Optional Packages only used for development. 
 `npm install nodemon --save-dev`  
 
+If `nodemon` is not refreshing add the `-L` flag aka --legacy-watch `nodemon -L index.js`
+
 ## Middleware
 Additional functionalities 
 
