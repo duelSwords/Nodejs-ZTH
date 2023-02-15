@@ -46,8 +46,6 @@ POST - tends to use request mostly
 When sending a response to the client. Cannot send multiple res.json. Only send one, add the RETURN key to the logic. 
 
 ## MVC - Model-View-Controller design pattern
-
-
 **MODEL** -> updates -> **VIEW** -> sees -> (USER) -> uses -> **CONTROLLER** -> manipulates -> MODEL 
 ![MVC](./mvc.png)
 
@@ -56,4 +54,9 @@ Controller - controls how the request and response should be handle. Should use 
 Model - house the data
 
 
+## Router
+use a routes folder to host the GET/POST Methods ...  
+Add middleware to that specific router if add to that file
+`req.baseUrl` to find the base of the relative route  
+`req.url` is the current route  
 

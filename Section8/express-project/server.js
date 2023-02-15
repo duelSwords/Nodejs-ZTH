@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const friendsController = require('./controllers/friends.controller')
-const messagesController = require('./controllers/messages.controller')
+// const friendsController = require('./controllers/friends.controller')
+// const messagesController = require('./controllers/messages.controller')
+// const friendsRouter = express.Router()
+const friendsRouter = require('./routes/friends.router');
+const messagesRouter = require('./routes/messages.router');
 
 //Moved to models, hold data
 // const friends = [
@@ -22,13 +25,13 @@ const messagesController = require('./controllers/messages.controller')
 //Custom middleware
 app.use((req, res, next) => {
   const start = Date.now();
-  console.log(`Using a middleware >.<: ${req.method} ${req.url}`);
+  console.log(`Using a middleware >.<: ${req.method}: ${req.baseUrl} ^^  ${req.url}`);
   next(); // Go to the next middleware
   //actions go here....
   //Upstream action, comes back to this middleware
   const delta = Date.now() - start;
   console.log(
-    `Sending it upstream to response: ${req.method} ${req.url} ${delta}ms`
+    `Sending it upstream to response: ${req.method}: ${req.baseUrl} ^^ ${req.url} ${delta}ms`
   );
 });
 
@@ -94,12 +97,18 @@ app.get('/', (req, res) => {
 // });
 
 //Using the import controller
-app.post('/friends', friendsController.postFriend)
-app.get('/friends', friendsController.getFriends)
-app.get('/friends/:friendId', friendsController.getFriend)
+// friendsRouter.post('/friends', friendsController.postFriend)
+// friendsRouter.get('/friends', friendsController.getFriends)
+// friendsRouter.get('/friends/:friendId', friendsController.getFriend)
 
-app.get('/messages', messagesController.getMessages)
-app.get('/messages', messagesController.postMessage)
+// friendsRouter.post('/', friendsController.postFriend)
+// friendsRouter.get('/', friendsController.getFriends)
+// friendsRouter.get('/:friendId', friendsController.getFriend)
+app.use('/friends', friendsRouter) //The route relative path in the METHOD, express.Router()
+
+// app.get('/messages', messagesController.getMessages)
+// app.get('/messages', messagesController.postMessage)
+app.use('/messages', messagesRouter) //The route relative path in the METHOD, express.Router()
 
 //LISTEN TO THE SERVER
 app.listen(PORT, () => {
