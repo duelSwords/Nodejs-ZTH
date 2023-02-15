@@ -21,3 +21,24 @@ Add extension by using `middleware`. Allow to process how `res` come and in and 
 
 Saving a `devDependencies`. Optional Packages only used for development. 
 `npm install nodemon --save-dev`  
+
+## Middleware
+Additional functionalities 
+
+`request --> express API --> Response`
+
+`request --> middleware1 (req+res+next) app.use() --> middleware Endpoint (req+res) app.METHOD --> Response`
+
+![Middleware](./middleware.png)
+
+app.use() the `use()` to use middleware.  
+```
+app.use( (req,res,next) => {} )
+```
+Has a third parameter `next` in the callback. Next to call the next middleware. 
+
+## ENDPOINTS
+GET - tends to use response mostly
+POST - tends to use request mostly
+
+When sending a response to the client. Cannot send multiple res.json. Only send one, add the RETURN key to the logic. 

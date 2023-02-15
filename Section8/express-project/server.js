@@ -13,6 +13,44 @@ const friends = [
   },
 ];
 
+//MIDDLEWARE
+
+//Custom middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  console.log(`Using a middleware >.<: ${req.method} ${req.url}`);
+  next(); // Go to the next middleware
+  //actions go here....
+  //Upstream action, comes back to this middleware
+  const delta = Date.now() - start;
+  console.log(
+    `Sending it upstream to response: ${req.method} ${req.url} ${delta}ms`
+  );
+});
+
+//express.json() middleware
+app.use(express.json());
+
+//METHOD ENDPOINTS
+//POST REQUEST
+app.post('/friends', (req, res) => {
+  //The req is parsed using the express.json middleware
+
+  if(!req.body.name){
+    return res.status(400).json({
+      error: 'Missing friend name'
+    })
+  }
+
+  const newFriend = {
+    name: req.body.name,
+    id: friends.length,
+  };
+  friends.push(newFriend);
+
+  res.json(newFriend)
+});
+
 // app object => routeMethod get/post/delete, => path => requestHandler function the callback
 app.get('/', (req, res) => {
   //Instead of node http end()
@@ -49,6 +87,7 @@ app.post('/messages', (req, res) => {
   console.log('Updating messagess....');
 });
 
+//LISTEN TO THE SERVER
 app.listen(PORT, () => {
   console.log(`Listening to ${PORT}... YAY!!`);
 });
