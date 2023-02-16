@@ -60,3 +60,29 @@ Add middleware to that specific router if add to that file
 `req.baseUrl` to find the base of the relative route  
 `req.url` is the current route  
 
+## RESTFUL APIs
+REpresentatiional  
+State  
+Transfer  
+
+Endpoints are collections of data   
+use GET, POST, PUT, DELETE   
+Client and server  
+Requests are Stateless and cacheable  
+Create, Read, Update, Delete (CRUD)      
+PUT- Update/replace (easier, commonly used)   
+PATCH - Update/modify   
+
+## Template engines
+https://expressjs.com/en/resources/template-engines.html
+hbs - handlebars.js
+
+In expressjs docs api references  
+https://expressjs.com/en/4x/api.html#app  
+app.set() - change settings
+
+
+## Layouts
+layouts.hbs is special. Its is shared across other hbs template files.  
+
+The `View` Folder is `SSR` serving the page from the server

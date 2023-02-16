@@ -1,5 +1,13 @@
 const express = require('express');
 const app = express();
+const path = require('path');
+
+
+//set Express Template engine, using handlebars
+app.set('view engine', 'hbs');
+//set the views to the views folder
+app.set('views', path.join(__dirname, 'views'));
+
 const PORT = 3000;
 // const friendsController = require('./controllers/friends.controller')
 // const messagesController = require('./controllers/messages.controller')
@@ -25,7 +33,9 @@ const messagesRouter = require('./routes/messages.router');
 //Custom middleware
 app.use((req, res, next) => {
   const start = Date.now();
-  console.log(`Using a middleware >.<: ${req.method}: ${req.baseUrl} ^^  ${req.url}`);
+  console.log(
+    `Using a middleware >.<: ${req.method}: ${req.baseUrl} ^^  ${req.url}`
+  );
   next(); // Go to the next middleware
   //actions go here....
   //Upstream action, comes back to this middleware
@@ -34,6 +44,11 @@ app.use((req, res, next) => {
     `Sending it upstream to response: ${req.method}: ${req.baseUrl} ^^ ${req.url} ${delta}ms`
   );
 });
+
+// Serve a webpage, without '/site' it be the root, else it localhost:3000/site
+// Use the path, to get the absolute path from current file
+const pathway = path.join(__dirname, 'public');
+app.use('/site', express.static(pathway));
 
 //express.json() middleware
 app.use(express.json());
@@ -46,6 +61,15 @@ app.get('/', (req, res) => {
   //Instead of node http end()
   res.send('Helllllloooooo');
 });
+
+app.get('/hbs', (req, res) => {
+  //Using HBS template, hbs file name, props objects
+  //SSR
+  res.render('index', {
+    title: 'Are you my friend?',
+    caption: 'Meow meooowwing'
+  })
+})
 
 // app.post('/friends', (req, res) => {
 //   //The req is parsed using the express.json middleware
@@ -64,7 +88,6 @@ app.get('/', (req, res) => {
 
 //   res.json(newFriend)
 // });
-
 
 // app.get('/friends', (req, res) => {
 //   res.json(friends); //Instead of send() use json() to guarantee json object
@@ -104,11 +127,11 @@ app.get('/', (req, res) => {
 // friendsRouter.post('/', friendsController.postFriend)
 // friendsRouter.get('/', friendsController.getFriends)
 // friendsRouter.get('/:friendId', friendsController.getFriend)
-app.use('/friends', friendsRouter) //The route relative path in the METHOD, express.Router()
+app.use('/friends', friendsRouter); //The route relative path in the METHOD, express.Router()
 
 // app.get('/messages', messagesController.getMessages)
 // app.get('/messages', messagesController.postMessage)
-app.use('/messages', messagesRouter) //The route relative path in the METHOD, express.Router()
+app.use('/messages', messagesRouter); //The route relative path in the METHOD, express.Router()
 
 //LISTEN TO THE SERVER
 app.listen(PORT, () => {
