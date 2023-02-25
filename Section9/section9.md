@@ -73,3 +73,6 @@ In the `server folder` in the `app.js` add the static() middleware, to serve the
 app.use(express.static(path.join(__dirname, '..', 'public')))
 ```
 Now when running `npm run deploy` it will build the frontend from the client folder and move it to the server folder. Now the both the frontend and backend is listening on the same server PORT. `Server` is also now serving the client optimized build folder using the static() middleware. 
+
+## Middleware Morgan 
+Use morgan middleware to log out request data and such.

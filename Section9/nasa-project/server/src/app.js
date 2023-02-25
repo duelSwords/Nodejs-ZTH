@@ -3,6 +3,7 @@ const app = express()
 const planetsRouter = require('./routes/planets/planets.router')
 const cors = require('cors')
 const path = require('path')
+const morgan = require('morgan')
 
 
 //Express middleware
@@ -10,6 +11,10 @@ app.use(cors({
     // add options to whitelist clients
     origin: 'http://localhost:3000'
 }))
+
+//A logger middleware
+app.use(morgan('combined'))
+
 app.use(express.json())
 app.use(planetsRouter)
 
