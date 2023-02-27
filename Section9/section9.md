@@ -76,3 +76,11 @@ Now when running `npm run deploy` it will build the frontend from the client fol
 
 ## Middleware Morgan 
 Use morgan middleware to log out request data and such.
+
+## Endpoints 
+When we have both the client build on the server. When looking at endpoint it will looks at the server endpoint routes. Not the client endpoint routes. To get it to look at the client routes as well add `/*` to the get request. Look at all routes after `/`. 
+```
+app.get('/*', (req,res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+})
+``` 
