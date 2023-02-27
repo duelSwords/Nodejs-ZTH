@@ -37,6 +37,14 @@ using the `--prefix` folder name, the folder to look into first
 
 Run both the `client and server` use the `&` to run both side by side instead of `&&`. 
 
+## Running npm from another folder
+To run an npm script from another directory, use --prefix:
+```
+npm run <command> --prefix <path> 
+or
+npm --prefix <path> run <command>
+```
+
 ## Root Package.json
 
 ```
