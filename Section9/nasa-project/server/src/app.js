@@ -25,8 +25,10 @@ app.use(express.json())
 //Express can also now serve the frontend on 8000, 
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
-app.use(planetsRouter)
-app.use(launchesRouter)
+// app.use(planetsRouter)
+// app.use(launchesRouter) 
+app.use('/planets', planetsRouter) // Using a root pathway 
+app.use('/launches', launchesRouter) // Using a root pathway 
 
 //Add the routing for all the endpoints for the frontend side Reactjs
 app.get('/*', (req,res) => {
