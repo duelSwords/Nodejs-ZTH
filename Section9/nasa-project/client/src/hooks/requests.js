@@ -22,7 +22,24 @@ async function httpGetLaunches() {
 async function httpSubmitLaunch(launch) {
   // TODO: Once API is ready.
   // Submit given launch data to launch system.
+  //POST Request take in second arg as {}
+  //Use a try catch block if case if server or network is down. Return json object
+  try {
+    return await fetch(`${API_URL}/launches`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(launch), // Body must be in form on string
+    });
+  } catch (error) {
+      return {
+        ok: false
+      }
+  }
 }
+
+
 
 async function httpAbortLaunch(id) {
   // TODO: Once API is ready.
