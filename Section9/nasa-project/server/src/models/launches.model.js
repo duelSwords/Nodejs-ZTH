@@ -1,3 +1,5 @@
+// Model handle all the data and transformation logic
+
 // Map is more flexible than js objects, key and value can be any
 const launches = new Map()
 
@@ -14,6 +16,10 @@ const launch = {
 
 launches.set(launch.flightNumber, launch)
 
+function getAllLaunches() {
+    return Array.from(launches.values())
+}
+
 module.exports = {
-    launches
+    getAllLaunches,
 }
