@@ -9,7 +9,7 @@ const launch = {
     mission: 'Mission name 100',
     rocket: 'Rocket name 100',
     launchDate: new Date('December 27, 2030'),
-    target: 'Kepler-1652 b',
+    destionation: 'Kepler-1652 b',
     // flightNumber : 100,
     // customers: ['ABC', 'NASA'],
     // upcoming: true,
